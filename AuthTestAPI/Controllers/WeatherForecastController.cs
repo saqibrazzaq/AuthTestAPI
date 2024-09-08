@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AuthTestAPI.Controllers
@@ -30,6 +31,12 @@ namespace AuthTestAPI.Controllers
         Summary = Summaries[Random.Shared.Next(Summaries.Length)]
       })
       .ToArray();
+    }
+
+    [HttpGet("info")]
+    public IActionResult Info()
+    {
+      return Ok($"Name: {User.Identity?.Name}");
     }
   }
 }
